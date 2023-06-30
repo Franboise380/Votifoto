@@ -1,16 +1,23 @@
 const express = require('express');
 const mongoose = require('mongoose');
+const path = require('path');
 const Image = require('./models/imageModels')
 const app = express();
 
 app.use(express.json());
 app.use(express.urlencoded({extended: false}));
+app.use( express.static("public"));
+app.set('view engine', 'ejs');
+app.set("views", path.join(__dirname, 'views'));
 
 //routes
+var indexRouter = require('./routes/index');
+var usersRouter = require('./routes/users');
+var formRouter = require('./routes/form');
 
 //main page
 app.get('/', (req, res)=>{
-    res.send("hello");
+    res.render("index", {title: "Express"});
 })
 
 //second page

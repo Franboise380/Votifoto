@@ -1,0 +1,17 @@
+@media screen and (min-width:1080px){
+
+  .class-id{
+  display:flex;
+  }
+
+  body {
+    padding: 50px;
+    font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
+  }
+  
+  a {
+    color: #00B7FF;
+  }
+  
+}
+  
