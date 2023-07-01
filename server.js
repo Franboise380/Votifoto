@@ -22,7 +22,7 @@ app.get('/', (req, res)=>{
 
 //second page
 app.get('/blog', (req, res)=>{
-    res.send("hello blog");
+    res.render("index", {title: "Prout"});
 })
 
 //get all image object in base
@@ -86,7 +86,7 @@ app.delete('/image/:id', async(req, res)=>{
     }
 })
 
-//connect to database
+//connect to database 
 mongoose.set('strictQuery', false);
 mongoose.connect('mongodb+srv://admin:admin@votifoto.4szd9p7.mongodb.net/voti-node?retryWrites=true&w=majority').then(() => {
     app.listen(3000, ()=>{

@@ -1,17 +1,27 @@
 @media screen and (min-width:1080px){
 
-  .class-id{
+}
+
+.class-id{
   display:flex;
   }
 
   body {
-    padding: 50px;
-    font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
+    font: "Biome Light";
+    background-color: #0e0c0f;
+    margin: 0px;
+    color: #fbf6f6;
   }
   
   a {
     color: #00B7FF;
   }
-  
-}
+
+  #header {
+    width: 100%;
+    position: sticky;
+    top: 0px;
+    height: 5em;
+    background-color: #1b1223;
+  }
   
