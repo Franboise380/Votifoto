@@ -6,11 +6,22 @@ const imageSchema = mongoose.Schema(
             type: String,
             required: [true, "Nom d'image nécessaire"]
         },
-        quantity: {
+        votes: {
             type: Number,
             require: true,
             default: 0
-        }
+        },
+        path: {
+            type: String,
+            require: true
+        },
+        category: {
+            type: String,
+            require: false
+        },
+        keywords : {
+            type: [String]
+        },
     },
     {
         timestamps: true

@@ -8,34 +8,44 @@
 <body>
 
   <div id="header">
-
-
+    <span class="title">
+      Votifoto
+    </span>
   </div>
 
-  <a>
-  <h1>Express</h1>
-  <p>Fortement fort tout ca
-  </p>
-  </a>
-  <div id="contact_form" >
-    <img src="images/nombucocoprout.png">
-  </div>
-  <div>
-    <h1>Gros titre</h1>
-    <p>Text</p>
-    <a href="#" >Texte cliquable</a>
-    <label for="name">Name (4 to 8 characters):</label>
-    <input type="text" id="name" name="name" required minlength="4"
-    maxlength="8" size="10">
-
-    <div id="button-container">
-      <button ID="command-button">C'est le bouton</button>
+  <div class="page-body">
+    <a>
+    <h1>Express</h1>
+    <p>Fortement fort tout ca
+    </p>
+    </a>
+    <div id="contact_form" >
+      <img src="images/nombucocoprout.png">
     </div>
+    <div>
+      <h1>Gros titre</h1>
+      <p>Text</p>
+      <a href="#" >Texte cliquable</a>
+      <label for="name">Name (4 to 8 characters):</label>
+      <input type="text" id="name" name="name" required minlength="4"
+      maxlength="8" size="10">
 
-    <div id="banner-message" style="display:none;">C'est le message</div>
+      <div id="button-container">
+        <button ID="command-button">C'est le bouton</button>
+      </div>
 
-    <div id="button-route">
-      <button ID="route-button">C'est le bouton de route</button>
+      <div id="banner-message" style="display:none;">C'est le message</div>
+
+      <div id="button-route">
+        <button ID="route-button">C'est le bouton de route</button>
+      </div>
+
+      <form method="post" action="/imageRoute" id="imageForm">
+        <input type="text" name="name"> 
+        <input type="text" name="category">
+        <input type="text" name="keywords">
+        <input type="submit" value="submit" id="imgSubmit">
+      </form>
     </div>
   </div>
 </body>

@@ -7,21 +7,27 @@
   }
 
   body {
-    font: "Biome Light";
+    font-family: "Tahoma";
     background-color: #0e0c0f;
     margin: 0px;
     color: #fbf6f6;
   }
   
-  a {
-    color: #00B7FF;
-  }
+
 
   #header {
     width: 100%;
     position: sticky;
     top: 0px;
     height: 5em;
-    background-color: #1b1223;
+    background-color: #3d1d5a;
+  }
+
+  .page-body {
+    margin: 3em;
+  }
+
+  .title {
+    text-align: center;
   }
   

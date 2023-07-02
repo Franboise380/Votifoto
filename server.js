@@ -35,10 +35,10 @@ app.get('/voir', async(req, res)=>{
     }
 })
 
-// get the 5 less voted images (the vote is in the quantity field)
+// get the 5 less voted images (the vote is in the votes field)
 app.get('/voirMoinsVote', async(req, res)=> {
     try {
-        const image = await Image.find({}).sort({quantity: 1}).limit(5);
+        const image = await Image.find({}).sort({votes: 1}).limit(5);
         res.status(200).json(image);
     } catch(error){
         res.status(500).json({message: error.message})
@@ -59,6 +59,7 @@ app.get('/voir/:id', async(req, res)=>{
 //add an image to base
 app.post('/imageRoute', async(req, res)=>{
     try {
+        console.log(req.body);
         const image = await Image.create(req.body)
         res.status(200).json(image);
     } catch(error) {

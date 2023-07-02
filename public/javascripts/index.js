@@ -7,8 +7,6 @@ element.addEventListener("click", function() {
 
 });
 
-console.log("non");
-
 const bouton = document.getElementById('command-button');
 var hiddenBox = $( "#banner-message" );
 
@@ -26,5 +24,40 @@ $( "#button-container button" ).on( "click", function( event ) {
 hiddenBox.show(); 
  
 });
+
+function handleSubmit(event) {
+    event.preventDefault();
+  
+    var xhr = new XMLHttpRequest();
+    const data = new FormData(event.target);
+
+    xhr.open('POST','http://localhost:3000/imageRoute')
+    xhr.setRequestHeader("Content-Type", "application/json");
+
+    xhr.send(JSON.stringify(Object.fromEntries(data)));
+
+        xhr.onreadystatechange = function() {
+            if (xhr.readyState == XMLHttpRequest.DONE) {
+                form.reset(); //reset form after AJAX success or do something else
+            }
+        }
+
+    //const value = Object.fromEntries(data.entries());
+    //value.topics = data.getAll("topics");
+
+    /*console.log(value);
+    console.log(JSON.stringify(value));
+    console.log(data);
+
+    fetch("/imageRoute", {
+        method: "POST", 
+        body: JSON.stringify(value)
+      }).then(res => {
+        console.log("Request complete! response:", res);
+      });*/
+  }
+
+const form = document.getElementById('imageForm');
+form.addEventListener('submit', handleSubmit);
 
     
