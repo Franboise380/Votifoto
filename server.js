@@ -35,6 +35,16 @@ app.get('/voir', async(req, res)=>{
     }
 })
 
+// get the 5 less voted images (the vote is in the quantity field)
+app.get('/voirMoinsVote', async(req, res)=> {
+    try {
+        const image = await Image.find({}).sort({quantity: 1}).limit(5);
+        res.status(200).json(image);
+    } catch(error){
+        res.status(500).json({message: error.message})
+    }
+})
+
 //get one image in base by id
 app.get('/voir/:id', async(req, res)=>{
     try {
