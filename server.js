@@ -14,6 +14,9 @@ app.set("views", path.join(__dirname, 'views'));
 var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
 var formRouter = require('./routes/form');
+const { publicDecrypt } = require('crypto');
+
+app.use('/users', require('./public/javascripts/viewAccount.js'));
 
 //main page
 app.get('/', (req, res)=>{
