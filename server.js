@@ -5,7 +5,9 @@ const Image = require('./models/imageModels')
 const app = express();
 const formidable = require('formidable');
 const fsmodule = require('fs');
+var cookieParser = require('cookie-parser');
 
+app.use(cookieParser());
 app.use(express.json());
 app.use(express.urlencoded({extended: false}));
 app.use( express.static("public"));
