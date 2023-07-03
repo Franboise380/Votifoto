@@ -33,7 +33,7 @@ function handleSubmit(event) {
     const imageData = new FormData(event.target);
 
     xhr.open('POST','/imageRoute')
-    xhr.setRequestHeader("Content-Type", "application/json");
+    xhr.setRequestHeader("Content-Type", "multipart/form-data");
 
     newData = Object.fromEntries(data);
     image = Object.fromEntries(data)['path'];
@@ -43,49 +43,19 @@ function handleSubmit(event) {
 
     imageData.append("files", image);
 
-    fetch("http://localhost:3000/upload_files", {
-        method: 'POST',
-        body: imageData,
-        headers: {
-          "Content-Type": undefined
-        }
-    })
-
-    
-
-
-    /*console.log(JSON.stringify(newData));
-
-        xhr.onreadystatechange = function() {
-            if (xhr.readyState == XMLHttpRequest.DONE) {
-                form.reset(); //reset form after AJAX success or do something else
-            }
-        }
-
-    //const value = Object.fromEntries(data.entries());
-    //value.topics = data.getAll("topics");
-
-    /*console.log(value);
-    console.log(JSON.stringify(value));
-    console.log(data);
-
-    fetch("/imageRoute", {
-        method: "POST", 
-        body: JSON.stringify(value)
-      }).then(res => {
-        console.log("Request complete! response:", res);
-      });*/
   }
 
 const form = document.getElementById('imageForm');
-form.addEventListener('submit', handleSubmit);
+//form.addEventListener('submit', handleSubmit);
+
+var note = 0;
 
 async function handleVote(event) {
     event.preventDefault();
     const id = event.srcElement.value;
 
     const image = await fetch("http://localhost:3000/voir/" +id).then(response => response.json());
-    image["votes"] += 1;
+    image["votes"] += note;
     const name = image["name"];
     const url = "http://localhost:3000/image/" + id;
 
@@ -109,9 +79,20 @@ async function handleVote(event) {
     })
 }
 
-const votes = Array.from(document.getElementsByClassName('votePlusButton'));
-votes.forEach(vote => {
-    vote.addEventListener('click', handleVote);
+const pvotes = Array.from(document.getElementsByClassName('votePlusButton'));
+pvotes.forEach(vote => {
+    vote.addEventListener('click', function(){
+        note = 1;
+        handleVote(event);
+    });
+});
+
+const mvotes = Array.from(document.getElementsByClassName('voteMoinsButton'));
+mvotes.forEach(vote => {
+    vote.addEventListener('click', function(){
+        note = -1;
+        handleVote(event);
+    });
 });
 
     

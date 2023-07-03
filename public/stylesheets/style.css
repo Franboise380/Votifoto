@@ -33,4 +33,19 @@
   .title {
     font-size: 3em;
   }
+
+  .imgSize {
+    max-width: 200px;
+    max-height: 200px;
+  }
+
+  .verticalImage {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .horizonImage {
+    display: flex;
+    flex-direction: row;
+  }
   

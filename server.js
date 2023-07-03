@@ -3,7 +3,8 @@ const mongoose = require('mongoose');
 const path = require('path');
 const Image = require('./models/imageModels')
 const app = express();
-const multer = require('multer');
+const formidable = require('formidable');
+const fsmodule = require('fs');
 
 app.use(express.json());
 app.use(express.urlencoded({extended: false}));
@@ -21,14 +22,11 @@ app.use('/users', require('./public/javascripts/viewAccount.js'));
 
 //main page
 app.get('/', async (req, res)=>{
+    const lessVote = await fetch("http://localhost:3000/voirMoinsVote").then(response => response.json());
     const images = await fetch("http://localhost:3000/getImagesCateg/n").then(response => response.json());
-    res.render("index", {title: "Express", data: images });
+    res.render("index", {title: "Express", data: images , lessVote : lessVote});
 })
 
-//second page
-app.get('/blog', (req, res)=>{
-    res.render("index", {title: "Prout"});
-})
 
 //get all image object in base
 app.get('/voir', async(req, res)=>{
@@ -73,13 +71,40 @@ app.get('/voir/:id', async(req, res)=>{
 
 //add an image to base
 app.post('/imageRoute', async(req, res)=>{
-    try {
+    const form = new formidable.IncomingForm();
+    form.parse(req, function (err, fields, files) {
+        if (err) {
+            console.error(err);
+            return res.status(500).send('Une erreur s\'est produite lors du téléchargement du fichier.');
+          }
+          
+          const file = files.file; // Récupération du fichier téléchargé
+
+          console.log(file);
+          console.log(file.filepath);
+         
+          // Chemin où vous souhaitez enregistrer le fichier
+          const newPath = 'public/images' + file.name;
+          
+          // Déplacer le fichier vers le nouvel emplacement
+          fsmodule.rename(file.filepath, newPath, function(err) {
+            if (err) {
+              console.error(err);
+              return res.status(500).send('Une erreur s\'est produite lors de l\'enregistrement du fichier.');
+            }
+            
+            // Fichier enregistré avec succès
+            res.send('Fichier téléchargé et enregistré !');
+          });
+    });
+
+    /*try {
         const image = await Image.create(req.body)
         res.status(200).redirect("/");
     } catch(error) {
         console.log(error.message);
         res.status(500).json({message: error.message})
-    }
+    }*/
 })
 
 //update image
@@ -110,14 +135,6 @@ app.delete('/image/:id', async(req, res)=>{
         res.status(500).json({message: error.message})
     }
 })
-
-const upload = multer({ dest: "/public/images/" });
-app.post("/upload_files", upload.array("files"), uploadFiles);
-function uploadFiles(req, res) {
-    console.log(req.body);
-    console.log(req.files);
-
-}
 
 //connect to database 
 mongoose.set('strictQuery', false);

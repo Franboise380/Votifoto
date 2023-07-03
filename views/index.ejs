@@ -21,14 +21,33 @@
     </a>
 
     <table>
+      <tbody class="horizonImage">
+      <% for(var i=0; i < lessVote.length; i++) { %>
+         <tr>
+           <td>
+              <div class="verticalImage">
+                <span><%= lessVote[i].name %></span>
+                <img src="images/<%= lessVote[i].path %>" alt="<%= lessVote[i]._id %>" class="imgSize">
+                <a class="<%= lessVote[i]._id %> <%= lessVote[i].name %>">Votes : <%= lessVote[i].votes %> </a>
+                <div class="horizonImage">
+                <button class="votePlusButton <%= lessVote[i].name %>" value="<%= lessVote[i]._id %>" >plus</button>
+                <button class="voteMoinsButton <%= lessVote[i].name %>" value="<%= lessVote[i]._id %>" >moins</button>
+                </div>
+              </div>
+           </td>
+         </tr>
+      <% } %>
+    </tbody>
+    </table>
+
+    <table>
       <% for(var i=0; i < data.length; i++) { %>
          <tr>
            <!--td><%= data[i].id %></td-->
            <td><%= data[i].name %></td>
            <td>
-            <img src="images/<%= data[i].path %>" alt="<%= data[i]._id %>">
+            <img src="images/<%= data[i].path %>" alt="<%= data[i]._id %>" class="imgSize">
             <a class="<%= data[i]._id %> <%= data[i].name %>">Votes : <%= data[i].votes %> </a>
-            <button class="votePlusButton <%= data[i].name %>" value="<%= data[i]._id %>" >plus</button>
            </td>
          </tr>
       <% } %>
@@ -54,11 +73,11 @@
         <button ID="route-button">C'est le bouton de route</button>
       </div>
 
-      <form method="post" action="/imageRoute" id="imageForm">
-        <input type="text" name="name"> 
+      <form method="post" action="/imageRoute" id="imageForm" enctype="multipart/form-data">
+        <!--input type="text" name="name"> 
         <input type="text" name="category">
-        <input type="text" name="keywords">
-        <input type="file" name="path" accept="image/png, image/jpeg">
+        <input type="text" name="keywords"-->
+        <input type="file" name="file" accept="image/png, image/jpeg">
         <input type="submit" value="submit" id="imgSubmit">
       </form>
     </div>
