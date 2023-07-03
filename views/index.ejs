@@ -26,8 +26,8 @@
                   <span style="text-align: center"><%= lessVote[i].name %></span>
                   <img src="images/<%= lessVote[i].path %>" alt="<%= lessVote[i]._id %>" class="imgSize">
                   <div class="horizonImage">
-                  <button class="button-3 halfdiv" class="votePlusButton <%= lessVote[i].name %>" value="<%= lessVote[i]._id %>" >plus</button>
-                  <button class="button-3 halfdiv" class="voteMoinsButton <%= lessVote[i].name %>" value="<%= lessVote[i]._id %>" >moins</button>
+                  <button class="button-3 halfdiv votePlusButton <%= lessVote[i].name %>" value="<%= lessVote[i]._id %>" >plus</button>
+                  <button class="button-3 halfdiv voteMoinsButton <%= lessVote[i].name %>" value="<%= lessVote[i]._id %>" >moins</button>
                   </div>
                   <a class="<%= lessVote[i]._id %> <%= lessVote[i].name %> " style="text-align: center">Votes : <%= lessVote[i].votes %> </a>
                 </div>
