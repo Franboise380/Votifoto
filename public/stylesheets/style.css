@@ -21,6 +21,9 @@
     top: 0px;
     height: 5em;
     background-color: #3d1d5a;
+    display: flex;
+    justify-content: center;
+    align-items: center;
   }
 
   .page-body {
@@ -28,6 +31,6 @@
   }
 
   .title {
-    text-align: center;
+    font-size: 3em;
   }
   

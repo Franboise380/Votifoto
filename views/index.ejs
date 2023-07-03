@@ -19,9 +19,23 @@
     <p>Fortement fort tout ca
     </p>
     </a>
-    <div id="contact_form" >
+
+    <table>
+      <% for(var i=0; i < data.length; i++) { %>
+         <tr>
+           <!--td><%= data[i].id %></td-->
+           <td><%= data[i].name %></td>
+           <td>
+            <img src="images/<%= data[i].path %>" alt="<%= data[i]._id %>">
+            <a class="<%= data[i]._id %> <%= data[i].name %>">Votes : <%= data[i].votes %> </a>
+            <button class="votePlusButton <%= data[i].name %>" value="<%= data[i]._id %>" >plus</button>
+           </td>
+         </tr>
+      <% } %>
+    </table>
+    <!--div id="contact_form" >
       <img src="images/nombucocoprout.png">
-    </div>
+    </div-->
     <div>
       <h1>Gros titre</h1>
       <p>Text</p>
@@ -44,6 +58,7 @@
         <input type="text" name="name"> 
         <input type="text" name="category">
         <input type="text" name="keywords">
+        <input type="file" name="path" accept="image/png, image/jpeg">
         <input type="submit" value="submit" id="imgSubmit">
       </form>
     </div>
