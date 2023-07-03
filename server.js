@@ -82,12 +82,16 @@ app.post('/imageRoute', async(req, res)=>{
 
           console.log(file);
           console.log(file.filepath);
+          console.log(file["filepath"]);
+          console.log(file[0]);
+          console.log(file[0].filepath);
+          console.log(file[0]["filepath"]);
          
           // Chemin où vous souhaitez enregistrer le fichier
-          const newPath = 'public/images' + file.name;
+          const newPath = 'public/images/' + file[0].newFilename;
           
           // Déplacer le fichier vers le nouvel emplacement
-          fsmodule.rename(file.filepath, newPath, function(err) {
+          fsmodule.rename(file[0].filepath, newPath, function(err) {
             if (err) {
               console.error(err);
               return res.status(500).send('Une erreur s\'est produite lors de l\'enregistrement du fichier.');
