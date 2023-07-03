@@ -1,0 +1,58 @@
+<html>
+
+<head>
+  <title> <%- title %> </title>
+  <link rel="stylesheet" href="/stylesheets/style.css">
+</head>
+
+<body>
+
+  <div id="header">
+    <span class="title">
+      Votifoto
+    </span>
+    <button class="button-3" id="btnMain">
+        Menu
+    </button>
+  </div>
+
+  <div class="page-body">
+    <a>
+    <h1>Upload</h1>
+    <p>Renseignez les infos
+    </p>
+    </a>
+
+    <form method="post" action="/imageRoute" id="imageForm" enctype="multipart/form-data" class="verticalImage" style="width: 30%">
+        <div class="betweeneur">
+            <label for="name">Nom de l'image</label>
+            <input type="text" name="name" required> 
+        </div>
+        <div class="betweeneur">
+            <label for="category">Catégorie de l'image</label>
+            <select type="select" name="category" required>
+                    <option value="1">1</option>
+                    <option value="2">2</option>
+                    <option value="3">3</option>
+                    <option value="4">4</option>
+            </select> 
+        </div>
+        <!--label for="keywords"></label>
+        <input type="text" name="keywords"-->
+        <div class="betweeneur">
+            <label for="file">Image à ajouter</label>
+            <input type="file" name="file" accept="image/png, image/jpeg" required>
+        </div>
+        <input type="submit" value="Envoyer" id="imgSubmit" class="button-3">
+    </form>
+  </div>
+</body>
+
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
+<script type="text/javascript" src="javascripts/uploadImage.js"></script>
+
+<link rel="stylesheet" href="/stylesheets/style.css" >
+<!--link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/css/bootstrap.min.css"
+integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous"-->
+</html>

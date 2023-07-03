@@ -27,6 +27,11 @@ app.get('/', async (req, res)=>{
     res.render("index", {title: "Express", data: images , lessVote : lessVote});
 })
 
+//main page
+app.get('/upload', async (req, res)=>{
+    res.render("uploadImage", {title: "Express"});
+})
+
 
 //get all image object in base
 app.get('/voir', async(req, res)=>{
@@ -72,43 +77,38 @@ app.get('/voir/:id', async(req, res)=>{
 //add an image to base
 app.post('/imageRoute', async(req, res)=>{
     const form = new formidable.IncomingForm();
-    form.parse(req, function (err, fields, files) {
+    form.parse(req, async function (err, fields, files) {
         if (err) {
             console.error(err);
             return res.status(500).send('Une erreur s\'est produite lors du téléchargement du fichier.');
           }
-          
           const file = files.file; // Récupération du fichier téléchargé
-
-          console.log(file);
-          console.log(file.filepath);
-          console.log(file["filepath"]);
-          console.log(file[0]);
-          console.log(file[0].filepath);
-          console.log(file[0]["filepath"]);
          
           // Chemin où vous souhaitez enregistrer le fichier
-          const newPath = 'public/images/' + file[0].newFilename;
+          const newName = file[0].newFilename + "." + (file[0].mimetype).split("/")[1];
+          const newPath = 'public/images/' + newName;
           
           // Déplacer le fichier vers le nouvel emplacement
-          fsmodule.rename(file[0].filepath, newPath, function(err) {
+          fsmodule.rename(file[0].filepath, newPath, async function(err) {
             if (err) {
               console.error(err);
               return res.status(500).send('Une erreur s\'est produite lors de l\'enregistrement du fichier.');
             }
-            
-            // Fichier enregistré avec succès
-            res.send('Fichier téléchargé et enregistré !');
           });
+        try {
+            const textField = fields.textfield;
+            fields['name'] = fields['name'][0];
+            fields['category'] = fields['category'][0];
+            fields['path'] = newName;
+            const image = await Image.create(fields)
+            res.status(200).redirect("/");
+        } catch(error) {
+            console.log(error.message);
+            res.status(500).json({message: error.message})
+        }
     });
 
-    /*try {
-        const image = await Image.create(req.body)
-        res.status(200).redirect("/");
-    } catch(error) {
-        console.log(error.message);
-        res.status(500).json({message: error.message})
-    }*/
+
 })
 
 //update image
