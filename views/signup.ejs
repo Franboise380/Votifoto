@@ -3,19 +3,22 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Se connecter</title>
+    <title>Créer son compte</title>
 </head>
 <body>
-    <form action="http://localhost:300/login/authenticate" method="post">
+    <form action="http://localhost:3000/login/signup" method="post">
         <label>Nom d'utilisateur : </label>
         <input type="text" name="username" placeholder="votre nom d'utilisateur">
         <br><br>
         <label>Mot de passe : </label>
         <input type="password" name="password" placeholder="votre mot de passe">
         <br><br>
-        <input type="submit" value="Changer le mot de passe">
+        <label>Entrez de nouveau votre mot de passe : </label>
+        <input type="password" name="vpassword" placeholder="répétez mot de passe">
+        <br><br>
+        <input type="submit" value="Créer son compte">
     </form>
     <br>
-    <a href="http://localhost:3000/signup">créer un compte</a>
+    <a href="http://localhost:3000/login">se connecter</a>
 </body>
 </html>

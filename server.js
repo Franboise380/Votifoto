@@ -18,7 +18,8 @@ var usersRouter = require('./routes/users');
 var formRouter = require('./routes/form');
 const { publicDecrypt } = require('crypto');
 
-app.use('/users', require('./public/javascripts/viewAccount.js'));
+app.use('/users', require('./public/javascripts/viewAccount'));
+app.use('/login', require('./public/javascripts/login'));
 
 //main page
 app.get('/', async (req, res)=>{
@@ -27,6 +28,18 @@ app.get('/', async (req, res)=>{
     res.render("index", {title: "Express", data: images , lessVote : lessVote});
 })
 
+app.get('/login', (req, res) => {
+    res.render('login');
+})
+
+app.get('/signup', (req, res) => {
+    res.render('signup');
+})
+
+//second page
+app.get('/blog', (req, res)=>{
+    res.render("index", {title: "Prout"});
+})
 
 //get all image object in base
 app.get('/voir', async(req, res)=>{
