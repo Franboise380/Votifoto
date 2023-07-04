@@ -7,10 +7,13 @@ router.post('/authenticate', async (req, res) => {
     const user = await User.findOne( { name: req.body.username } );
 
     if (user == null) {
-        return res.status(400).json({message: "cannot find user"});
+        return res.render("login", {title: "Ajout d'image" , alert: "Nom d'utilisateur inconnu"});
     }
     try {
-        await bcrypt.compare(req.body.password, user.password)
+        const mdp = await bcrypt.compare(req.body.password, user.password);
+        if(!mdp){
+            return res.render("login", {title: "Ajout d'image" , alert: "Mot de passe incorrect"});
+        }
     } catch (error) {
         res.status(500).json({message: error.message});
     }

@@ -5,8 +5,9 @@ const router = express.Router();
 //get all user object in base
 router.get('/voir', async(req, res)=>{
     try {
-        const users = await User.find({});
-        res.status(200).json(users);
+        const connected = req.cookies['user'];
+        const user = await User.findOne({ name: connected });
+        return res.render("viewAccount", {title: "Votre compte", user: user});
     } catch(error){
         res.status(500).json({message: error.message})
     }

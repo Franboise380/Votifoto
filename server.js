@@ -44,7 +44,16 @@ app.get('/upload', async (req, res)=>{
     } else {
         res.render("login", {title: "Ajout d'image" , alert: "Vous devez etre coonecté pour publier une image"});
     }
+})
 
+//main page
+app.get('/uploadError', async (req, res)=>{
+    const connected = req.cookies['user'];
+    if(connected) {
+        res.render("uploadImage", {title: "Ajout d'image", alert: "Seul les images au format png et jpeg sont acceptés"});
+    } else {
+        res.render("login", {title: "Ajout d'image" , alert: "Vous devez etre coonecté pour publier une image"});
+    }
 })
 
 app.get('/login', (req, res) => {
@@ -81,7 +90,7 @@ app.get('/voir', async(req, res)=>{
 // get the 5 less voted images (the vote is in the votes field)
 app.get('/voirMoinsVote', async(req, res)=> {
     try {
-        const image = await Image.find({}).sort(  {votes: 1} ).limit(5);
+        const image = await Image.find({}).sort( {votes: 1} ).limit(5);
         res.status(200).json(image);
     } catch(error){
         res.status(500).json({message: error.message})
@@ -118,6 +127,11 @@ app.post('/imageRoute', async(req, res)=>{
             return res.status(500).send('Une erreur s\'est produite lors du téléchargement du fichier.');
           }
           const file = files.file; // Récupération du fichier téléchargé
+
+          if( (file[0].mimetype).split("/")[1] != "png" && (file[0].mimetype).split("/")[1] != "jpeg"){
+            console.log((file[0].mimetype).split("/")[1]);
+            return res.status(400).redirect("/uploadError");
+          }
          
           // Chemin où vous souhaitez enregistrer le fichier
           const newName = file[0].newFilename + "." + (file[0].mimetype).split("/")[1];
