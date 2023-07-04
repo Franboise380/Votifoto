@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title> <%- title %> </title>
+  <link rel="stylesheet" href="/stylesheets/style.css">
+</head>
+<body>
+    <div id="header">
+        <span class="title">
+          Votifoto
+        </span>
+        <button onclick="window.location.href='/'" class="button-head" id="btnMain">
+            Menu
+        </button>
+    </div>
+
+      <% if (typeof alert != "undefined") { %>
+        <div class="alertMessage">
+            <span class="alertText">
+            <%- alert %>
+            </span>
+        </div>
+      <% } %>
+
+    <div class="page-body">
+
+    </div>
+</body>
+</html>

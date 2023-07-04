@@ -1,6 +1,8 @@
-<html>
-
+<!DOCTYPE html>
+<html lang="fr">
 <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title> <%- title %> </title>
   <link rel="stylesheet" href="/stylesheets/style.css">
 </head>
@@ -8,13 +10,36 @@
 <body>
 
   <div id="header">
+    <button onclick="window.location.href='/searchKeyWord'" class="button-head">
+      Recherche : <br> Mot clé
+    </button>
+    <button onclick="window.location.href='/searchRessource'" class="button-head">
+      Recherche : <br> Nom
+    </button>
     <span class="title">
       Votifoto
     </span>
-    <button id="btnUpload" class="button-3">
+    <button id="btnUpload" class="button-head">
       Upload image
     </button>
+    <% if (typeof connected == "undefined") { %>
+      <button onclick="window.location.href='/login'" class="button-head">
+        Se connecter
+      </button>
+    <% } else { %>
+      <button onclick="window.location.href='/viewAccount'" class="button-head">
+        Voir son compte
+      </button>
+    <% } %>
   </div>
+
+  <% if (typeof alert != "undefined") { %>
+    <div class="alertMessage">
+        <span class="alertText">
+        <%- alert %>
+        </span>
+    </div>
+  <% } %>
 
   <div class="page-body">
     <table class="centreur" style="margin-bottom: 3em;">
@@ -37,18 +62,75 @@
       </tbody>
     </table>
 
-    <table>
-      <% for(var i=0; i < data.length; i++) { %>
-         <tr>
-           <!--td><%= data[i].id %></td-->
-           <td><%= data[i].name %></td>
-           <td>
-            <img src="images/<%= data[i].path %>" alt="<%= data[i]._id %>" class="imgSize">
-            <a class="<%= data[i]._id %> <%= data[i].name %>">Votes : <%= data[i].votes %> </a>
-           </td>
-         </tr>
-      <% } %>
-    </table>
+    <div class="horizonImage">
+      <div>
+        <span style="width: 100%; text-align: center;"> Catégorie : 1</span>
+        <table class="imageColumn">
+          <tbody>
+            <% for(var i=0; i < data1.length; i++) { %>
+              <tr>
+                <td><%= data1[i].name %></td>
+                <td>
+                  <img src="images/<%= data1[i].path %>" alt="<%= data1[i]._id %>" class="imgSize">
+                  <a class="<%= data1[i]._id %> <%= data1[i].name %>">Votes : <%= data1[i].votes %> </a>
+                </td>
+              </tr>
+            <% } %>
+          </tbody>
+        </table>
+      </div>
+
+      <div >
+        <span style="width: 100%; text-align: center;"> Catégorie : 2</span>
+        <table class="imageColumn">
+          <tbody>
+            <% for(var i=0; i < data2.length; i++) { %>
+              <tr>
+                <td><%= data2[i].name %></td>
+                <td>
+                  <img src="images/<%= data2[i].path %>" alt="<%= data2[i]._id %>" class="imgSize">
+                  <a class="<%= data2[i]._id %> <%= data2[i].name %>">Votes : <%= data2[i].votes %> </a>
+                </td>
+              </tr>
+            <% } %>
+          </tbody>
+        </table>
+      </div>
+
+      <div>
+        <span style="width: 100%; text-align: center;"> Catégorie : 3</span>
+        <table class="imageColumn">
+          <tbody>
+            <% for(var i=0; i < data3.length; i++) { %>
+              <tr>
+                <td><%= data3[i].name %></td>
+                <td>
+                  <img src="images/<%= data3[i].path %>" alt="<%= data3[i]._id %>" class="imgSize">
+                  <a class="<%= data3[i]._id %> <%= data3[i].name %>">Votes : <%= data3[i].votes %> </a>
+                </td>
+              </tr>
+            <% } %>
+          </tbody>
+        </table>
+      </div>
+
+      <div>
+        <span style="width: 100%; text-align: center;"> Catégorie : 4</span>
+        <table class="imageColumn">
+          <tbody>
+            <% for(var i=0; i < data4.length; i++) { %>
+              <tr>
+                <td><%= data4[i].name %></td>
+                <td>
+                  <img src="images/<%= data4[i].path %>" alt="<%= data4[i]._id %>" class="imgSize">
+                  <a class="<%= data4[i]._id %> <%= data4[i].name %>">Votes : <%= data4[i].votes %> </a>
+                </td>
+              </tr>
+            <% } %>
+          </tbody>
+        </table>
+      </div>
+    </div>
   </div>
 </body>
 

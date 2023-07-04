@@ -30,6 +30,8 @@
 
   .title {
     font-size: 3em;
+    width: 100%;
+    text-align: center;
   }
 
   .imgSize {
@@ -111,4 +113,76 @@
   display: flex; 
   justify-content: space-between;
 }
+
+.button-head {
+  appearance: none;
+  background-color: #49256a;
+  border: 1px solid rgba(27, 31, 35, .15);
+  border-radius: 6px;
+  box-shadow: rgba(27, 31, 35, .1) 0 1px 0;
+  box-sizing: border-box;
+  color: #fff;
+  cursor: pointer;
+  display: inline-block;
+  font-family: -apple-system,system-ui,"Segoe UI",Helvetica,Arial,sans-serif,"Apple Color Emoji","Segoe UI Emoji";
+  font-size: 14px;
+  font-weight: 600;
+  line-height: 20px;
+  padding: 6px 16px;
+  text-align: center;
+  text-decoration: none;
+  user-select: none;
+  -webkit-user-select: none;
+  touch-action: manipulation;
+  vertical-align: middle;
+  white-space: nowrap;
+  height: 100%;
+  z-index: 10;
+}
+
+.button-head:focus:not(:focus-visible):not(.focus-visible) {
+  box-shadow: none;
+  outline: none;
+}
+
+.button-head:hover {
+  background-color: #3d1d5a;
+}
+
+.button-head:focus {
+  box-shadow: rgba(33, 17, 54, 0.4) 0 0 0 3px;
+  outline: none;
+}
+
+.button-head:disabled {
+  background-color: #150718;
+  border-color: rgba(27, 31, 35, .1);
+  color: rgba(255, 255, 255, .8);
+  cursor: default;
+}
+
+.button-head:active {
+  background-color: #71298e;
+  box-shadow: rgba(20, 70, 32, .2) 0 1px 0 inset;
+}
+
+.alertMessage {
+  margin: 10px 0px 10px 0px;
+  background-color: #751b1b;
+  display: flex;
+}
+
+.alertText {
+  text-align: center;
+  font-size: 1.5em;
+  width: 100%;
+}
+
+.imageColumn {
+  width: 23%;
+  margin: 2px;
+  display: flex;
+  flex-direction: column;
+}
+
   

@@ -26,21 +26,41 @@ app.use('/login', require('./public/javascripts/login'));
 //main page
 app.get('/', async (req, res)=>{
     const lessVote = await fetch("http://localhost:3000/voirMoinsVote").then(response => response.json());
-    const images = await fetch("http://localhost:3000/getImagesCateg/n").then(response => response.json());
-    res.render("index", {title: "Express", data: images , lessVote : lessVote});
+
+    const images1 = await fetch("http://localhost:3000/getImagesCateg/1").then(response => response.json());
+    const images2 = await fetch("http://localhost:3000/getImagesCateg/2").then(response => response.json());
+    const images3 = await fetch("http://localhost:3000/getImagesCateg/3").then(response => response.json());
+    const images4 = await fetch("http://localhost:3000/getImagesCateg/4").then(response => response.json());
+
+    const connected = req.cookies['user'];
+    res.render("index", {title: "Votifoto", data1: images1 , data2: images2 , data3: images3 , data4: images4 , lessVote : lessVote, connected: connected});
 })
 
 //main page
 app.get('/upload', async (req, res)=>{
-    res.render("uploadImage", {title: "Express"});
+    const connected = req.cookies['user'];
+    if(connected) {
+        res.render("uploadImage", {title: "Ajout d'image"});
+    } else {
+        res.render("login", {title: "Ajout d'image" , alert: "Vous devez etre coonecté pour publier une image"});
+    }
+
 })
 
 app.get('/login', (req, res) => {
-    res.render('login');
+    res.render('login', {title: "Se connecter"});
 })
 
 app.get('/signup', (req, res) => {
-    res.render('signup');
+    res.render('signup', {title: "Creer son compte"});
+})
+
+app.get('/searchKeyWord', (req, res) => {
+    res.render('searchKeyWord', {title: "Recherche - Mot clés"});
+})
+
+app.get('/searchResource', (req, res) => {
+    res.render('searchResource', {title: "Recherche - Nom"});
 })
 
 //second page
@@ -61,7 +81,7 @@ app.get('/voir', async(req, res)=>{
 // get the 5 less voted images (the vote is in the votes field)
 app.get('/voirMoinsVote', async(req, res)=> {
     try {
-        const image = await Image.find({}).sort({votes: 1}).limit(5);
+        const image = await Image.find({}).sort(  {votes: 1} ).limit(5);
         res.status(200).json(image);
     } catch(error){
         res.status(500).json({message: error.message})

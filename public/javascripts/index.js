@@ -8,11 +8,6 @@ boutonr.addEventListener("click", function() {
 });
 
 
-$( "#button-container button" ).on( "click", function( event ) {
-hiddenBox.show(); 
- 
-});
-
 var note = 0;
 
 async function handleVote(event) {
