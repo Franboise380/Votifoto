@@ -100,7 +100,7 @@ app.get('/voirMoinsVote', async(req, res)=> {
 app.get('/getImagesCateg/:categ', async(req, res)=> {
     try {
         const {categ} = req.params;
-        const image = await Image.find({ category: categ});
+        const image = await Image.find({ category: categ}).sort({votes: -1});
         res.status(200).json(image);
     } catch(error){
         res.status(500).json({message: error.message})
@@ -115,6 +115,16 @@ app.get('/voir/:id', async(req, res)=>{
         res.status(200).json(image);
     } catch(error){
         res.status(500).json({message: error.message})
+    }
+})
+
+app.post('/disconnect', (req, res)=>{
+    const connected = req.cookies['user'];
+    if(connected) {
+        res.clearCookie("user");
+        res.render("/", {title: "Votifoto"});
+    } else {
+        res.render("/", {title: "Votifoto"});
     }
 })
 
