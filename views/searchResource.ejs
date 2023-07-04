@@ -24,8 +24,29 @@
         </div>
       <% } %>
 
-    <div class="page-body">
+    <div class="page-body horizonImage">
+        <div class="verticalImage">
+            <form action="/searchResource" method="post" class="verticalImage" enctype="multipart/form-data">
+                <div class="betweeneur">
+                    <label>Nom de l'image : </label>
+                    <input type="text" name="name" placeholder="Nom de l'image" required>
+                </div>
+                    <input type="submit" value="Rechercher" class="button-3">
+            </form>
 
+            <% if (typeof image != "undefined") { %>
+                <br>
+                <p>Nom : <%= image.name %></p>
+                <br>
+                <a class="<%= image._id %> <%= image.name %>">Votes : <%= image.votes %> </a>
+            <% } %>
+        </div>
+
+        <div class="imageColumnSearch">
+            <% if (typeof image != "undefined") { %>
+                <img src="images/<%= image.path %>" alt="<%= image._id %>" class="imgSizePlus">
+            <% } %>
+        </div>
     </div>
 </body>
 </html>

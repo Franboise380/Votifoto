@@ -185,4 +185,44 @@
   flex-direction: column;
 }
 
+.imageColumnSearch {
+  width: 75%;
+  margin: 2px;
+  display: flex;
+  flex-direction: column;
+}
+
+.imgSizePlus {
+  max-width: 800px;
+  max-height: 800px;
+  margin: 10px;
+}
+
+.betweeneur select {
+  background-color: #31164b;
+  color: white;
+  padding: 2px;
+  width: 170px;
+  border: none;
+  font-size: 12px;
+  box-shadow: 0 5px 25px rgba(0, 0, 0, 0.2);
+  -webkit-appearance: button;
+  appearance: button;
+  outline: none;
+}
+
+.betweeneur input {
+  background-color: #31164b;
+  color: white;
+  padding: 2px;
+  width: 170px;
+  border: none;
+  font-size: 12px;
+  box-shadow: 0 5px 25px rgba(0, 0, 0, 0.2);
+  -webkit-appearance: button;
+  appearance: button;
+  outline: none;
+  margin: 2px;
+}
+
   

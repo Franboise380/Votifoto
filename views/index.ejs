@@ -10,9 +10,9 @@
 <body>
 
   <div id="header">
-    <button onclick="window.location.href='/searchKeyWord'" class="button-head">
+    <!--button onclick="window.location.href='/searchKeyWord'" class="button-head">
       Recherche : <br> Mot clé
-    </button>
+    </button-->
     <button onclick="window.location.href='/searchResource'" class="button-head">
       Recherche : <br> Nom
     </button>
@@ -51,8 +51,8 @@
                   <span style="text-align: center"><%= lessVote[i].name %></span>
                   <img src="images/<%= lessVote[i].path %>" alt="<%= lessVote[i]._id %>" class="imgSize">
                   <div class="horizonImage">
-                  <button class="button-3 halfdiv votePlusButton <%= lessVote[i].name %>" value="<%= lessVote[i]._id %>" >plus</button>
-                  <button class="button-3 halfdiv voteMoinsButton <%= lessVote[i].name %>" value="<%= lessVote[i]._id %>" >moins</button>
+                  <button class="button-3 halfdiv votePlusButton <%= lessVote[i].name %>" value="<%= lessVote[i]._id %>" >J'aime</button>
+                  <button class="button-3 halfdiv voteMoinsButton <%= lessVote[i].name %>" value="<%= lessVote[i]._id %>" >J'aime pas</button>
                   </div>
                   <a class="<%= lessVote[i]._id %> <%= lessVote[i].name %> " style="text-align: center">Votes : <%= lessVote[i].votes %> </a>
                 </div>
@@ -64,7 +64,7 @@
 
     <div class="horizonImage">
       <div>
-        <span style="width: 100%; text-align: center;"> Catégorie : 1</span>
+        <span style="width: 100%; text-align: center;"> Catégorie : Divers</span>
         <table class="imageColumn">
           <tbody>
             <% for(var i=0; i < data1.length; i++) { %>
@@ -81,7 +81,7 @@
       </div>
 
       <div >
-        <span style="width: 100%; text-align: center;"> Catégorie : 2</span>
+        <span style="width: 100%; text-align: center;"> Catégorie : Youtubeur</span>
         <table class="imageColumn">
           <tbody>
             <% for(var i=0; i < data2.length; i++) { %>
@@ -98,7 +98,7 @@
       </div>
 
       <div>
-        <span style="width: 100%; text-align: center;"> Catégorie : 3</span>
+        <span style="width: 100%; text-align: center;"> Catégorie : Memes</span>
         <table class="imageColumn">
           <tbody>
             <% for(var i=0; i < data3.length; i++) { %>
@@ -115,7 +115,7 @@
       </div>
 
       <div>
-        <span style="width: 100%; text-align: center;"> Catégorie : 4</span>
+        <span style="width: 100%; text-align: center;"> Catégorie : Sport</span>
         <table class="imageColumn">
           <tbody>
             <% for(var i=0; i < data4.length; i++) { %>

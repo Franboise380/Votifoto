@@ -72,6 +72,31 @@ app.get('/searchResource', (req, res) => {
     res.render('searchResource', {title: "Recherche - Nom"});
 })
 
+app.post('/searchResource', (req, res) => {
+    const form = new formidable.IncomingForm();
+    form.parse(req, async function (err, fields, files) {
+        if (err) {
+            console.error(err);
+            return res.status(500).send('Une erreur s\'est produite lors de la recherche');
+        }
+        try {
+            const textField = fields.textfield;
+            const name = fields['name'][0];
+            const image = await Image.findOne({ name: name});
+            if(image){
+                res.render("searchResource", {title: "Recherche - Nom", image: image });
+            } else {
+                res.render("searchResource", {title: "Recherche - Nom", alert: "Cette image n'existe pas" });
+            }
+        } catch(error) {
+            console.log(error.message);
+            res.status(500).json({message: error.message})
+        }
+    });
+    console.log("oh ?");
+    //res.render('searchResource', {title: "Recherche - Nom"});
+})
+
 //second page
 app.get('/blog', (req, res)=>{
     res.render("index", {title: "Prout"});
@@ -122,9 +147,9 @@ app.post('/disconnect', (req, res)=>{
     const connected = req.cookies['user'];
     if(connected) {
         res.clearCookie("user");
-        res.render("/", {title: "Votifoto"});
+        res.status(200).redirect("/")
     } else {
-        res.render("/", {title: "Votifoto"});
+        res.status(200).redirect("/")
     }
 })
 
@@ -139,7 +164,6 @@ app.post('/imageRoute', async(req, res)=>{
           const file = files.file; // Récupération du fichier téléchargé
 
           if( (file[0].mimetype).split("/")[1] != "png" && (file[0].mimetype).split("/")[1] != "jpeg"){
-            console.log((file[0].mimetype).split("/")[1]);
             return res.status(400).redirect("/uploadError");
           }
          
@@ -203,9 +227,10 @@ app.delete('/image/:id', async(req, res)=>{
 mongoose.set('strictQuery', false);
 mongoose.connect('mongodb+srv://admin:admin@votifoto.4szd9p7.mongodb.net/voti-node?retryWrites=true&w=majority').then(() => {
     app.listen(3000, ()=>{
-        console.log("votifoto : port 3000");
+        console.log("Application Votifoto lancée");
+        console.log("Disponible sur le port 3000")
     })
-    console.log("yes!");
+    console.log("Base de donnée : Connectée");
 }).catch(() => {
     console.log(error);
 })
