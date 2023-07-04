@@ -93,8 +93,6 @@ app.post('/searchResource', (req, res) => {
             res.status(500).json({message: error.message})
         }
     });
-    console.log("oh ?");
-    //res.render('searchResource', {title: "Recherche - Nom"});
 })
 
 //second page
