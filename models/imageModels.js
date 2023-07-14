@@ -11,6 +11,11 @@ const imageSchema = mongoose.Schema(
             require: true,
             default: 0
         },
+        valeur: {
+            type: Number,
+            require: true,
+            default: 0
+        },
         path: {
             type: String,
             require: true

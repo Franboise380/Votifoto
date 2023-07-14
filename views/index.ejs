@@ -54,7 +54,7 @@
                   <button class="button-3 halfdiv votePlusButton <%= lessVote[i].name %>" value="<%= lessVote[i]._id %>" >J'aime</button>
                   <button class="button-3 halfdiv voteMoinsButton <%= lessVote[i].name %>" value="<%= lessVote[i]._id %>" >J'aime pas</button>
                   </div>
-                  <a class="<%= lessVote[i]._id %> <%= lessVote[i].name %> " style="text-align: center">Votes : <%= lessVote[i].votes %> </a>
+                  <a class="<%= lessVote[i]._id %> <%= lessVote[i].name %> " style="text-align: center">Votes : <%= lessVote[i].valeur %> </a>
                 </div>
             </td>
           </tr>
@@ -73,7 +73,7 @@
                 <td>
                   <img src="images/<%= data1[i].path %>" alt="<%= data1[i]._id %>" class="imgSize">
                   <br>
-                  <a class="<%= data1[i]._id %> <%= data1[i].name %>">Votes : <%= data1[i].votes %> </a>
+                  <a class="<%= data1[i]._id %> <%= data1[i].name %>">Votes : <%= data1[i].valeur %> </a>
                 </td>
               </tr>
             <% } %>
@@ -91,7 +91,7 @@
                 <td>
                   <img src="images/<%= data2[i].path %>" alt="<%= data2[i]._id %>" class="imgSize">
                   <br>
-                  <a class="<%= data2[i]._id %> <%= data2[i].name %>">Votes : <%= data2[i].votes %> </a>
+                  <a class="<%= data2[i]._id %> <%= data2[i].name %>">Votes : <%= data2[i].valeur %> </a>
                 </td>
               </tr>
             <% } %>
@@ -109,7 +109,7 @@
                 <td>
                   <img src="images/<%= data3[i].path %>" alt="<%= data3[i]._id %>" class="imgSize">
                   <br>
-                  <a class="<%= data3[i]._id %> <%= data3[i].name %>">Votes : <%= data3[i].votes %> </a>
+                  <a class="<%= data3[i]._id %> <%= data3[i].name %>">Votes : <%= data3[i].valeur %> </a>
                 </td>
               </tr>
             <% } %>
@@ -127,7 +127,7 @@
                 <td>
                   <img src="images/<%= data4[i].path %>" alt="<%= data4[i]._id %>" class="imgSize">
                   <br>
-                  <a class="<%= data4[i]._id %> <%= data4[i].name %>">Votes : <%= data4[i].votes %> </a>
+                  <a class="<%= data4[i]._id %> <%= data4[i].name %>">Votes : <%= data4[i].valeur %> </a>
                 </td>
               </tr>
             <% } %>

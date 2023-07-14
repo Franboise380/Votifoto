@@ -15,7 +15,8 @@ async function handleVote(event) {
     const id = event.srcElement.value;
 
     const image = await fetch("http://localhost:3000/voir/" +id).then(response => response.json());
-    image["votes"] += note;
+    image["votes"] ++ ;
+    image["valeur"] += note;
     const name = image["name"];
     const url = "http://localhost:3000/image/" + id;
 
@@ -32,7 +33,7 @@ async function handleVote(event) {
                 if(imt.tagName == "BUTTON"){
                     imt.remove();
                 } else if(imt.tagName == "A") {
-                    imt.innerHTML = "Votes : " + image["votes"];
+                    imt.innerHTML = "Votes : " + image["valeur"];
                 }
             });
         }

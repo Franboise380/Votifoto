@@ -124,7 +124,7 @@ app.get('/voirMoinsVote', async(req, res)=> {
 app.get('/getImagesCateg/:categ', async(req, res)=> {
     try {
         const {categ} = req.params;
-        const image = await Image.find({ category: categ}).sort({votes: -1});
+        const image = await Image.find({ category: categ}).sort({valeur: -1});
         res.status(200).json(image);
     } catch(error){
         res.status(500).json({message: error.message})
@@ -182,6 +182,7 @@ app.post('/imageRoute', async(req, res)=>{
             fields['name'] = fields['name'][0];
             fields['category'] = fields['category'][0];
             fields['path'] = newName;
+            fields['valeur'] = 0;
             const image = await Image.create(fields)
             res.status(200).redirect("/");
         } catch(error) {
