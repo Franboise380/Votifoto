@@ -5,6 +5,7 @@ const Image = require('./models/imageModels')
 const app = express();
 const formidable = require('formidable');
 const fsmodule = require('fs');
+const login_addr = require('./server_login.js');
 var cookieParser = require('cookie-parser');
 
 app.use(cookieParser());
@@ -223,7 +224,7 @@ app.delete('/image/:id', async(req, res)=>{
 
 //connect to database 
 mongoose.set('strictQuery', false);
-mongoose.connect('mongodb+srv://admin:admin@votifoto.4szd9p7.mongodb.net/voti-node?retryWrites=true&w=majority').then(() => {
+mongoose.connect(login_addr.toString()).then(() => {
     app.listen(3000, ()=>{
         console.log("Application Votifoto lancée");
         console.log("Disponible sur le port 3000")
