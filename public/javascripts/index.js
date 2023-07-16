@@ -56,4 +56,18 @@ mvotes.forEach(vote => {
     });
 });
 
+function affGran(path, name, date) {
+    var mi = document.getElementById('modalImg');
+    mi.src = path;
+    var mt = document.getElementById('modalTxt');
+    mt.innerText = name + " - Crée le " + date.substring(0, 11) ;
+    var im = document.getElementById('imgModal');
+    im.style.display = '';
+}
+
+function cacheGran() {
+    var im = document.getElementById('imgModal');
+    im.style.display = 'none';
+}
+
     
