@@ -152,6 +152,10 @@ app.post('/disconnect', (req, res)=>{
     }
 })
 
+app.get('/changePassword', (req, res)=>{
+    res.render('changePassword', {title: "Changement de mot de passe"});
+})
+
 //add an image to base
 app.post('/imageRoute', async(req, res)=>{
     const form = new formidable.IncomingForm();
