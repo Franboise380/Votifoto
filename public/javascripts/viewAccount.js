@@ -24,6 +24,7 @@ router.post('/addUser', async(req, res)=>{
     }
 })
 
+/*
 //get one image in base by id
 router.get('/voir/:id', async(req, res)=>{
     try {
@@ -33,7 +34,7 @@ router.get('/voir/:id', async(req, res)=>{
     } catch(error){
         res.status(500).json({message: error.message})
     }
-})
+})*/
 
 //update image
 router.put('/update/:id', async(req, res)=>{

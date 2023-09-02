@@ -1,3 +1,4 @@
+//Recuperation des modules nécessaire aux fonctions de l'application
 const express = require('express');
 const mongoose = require('mongoose');
 const path = require('path');
@@ -15,8 +16,9 @@ app.use( express.static("public"));
 app.set('view engine', 'ejs');
 app.set("views", path.join(__dirname, 'views'));
 
-//routes
-var indexRouter = require('./routes/index');
+
+//Appels des routeurs 
+var indexRouter = require('./routes/index')(app);
 var usersRouter = require('./routes/users');
 var formRouter = require('./routes/form');
 const { publicDecrypt } = require('crypto');
@@ -25,17 +27,6 @@ app.use('/users', require('./public/javascripts/viewAccount'));
 app.use('/login', require('./public/javascripts/login'));
 
 //main page
-app.get('/', async (req, res)=>{
-    const lessVote = await fetch("http://localhost:3000/voirMoinsVote").then(response => response.json());
-
-    const images1 = await fetch("http://localhost:3000/getImagesCateg/1").then(response => response.json());
-    const images2 = await fetch("http://localhost:3000/getImagesCateg/2").then(response => response.json());
-    const images3 = await fetch("http://localhost:3000/getImagesCateg/3").then(response => response.json());
-    const images4 = await fetch("http://localhost:3000/getImagesCateg/4").then(response => response.json());
-
-    const connected = req.cookies['user'];
-    res.render("index", {title: "Votifoto", data1: images1 , data2: images2 , data3: images3 , data4: images4 , lessVote : lessVote, connected: connected});
-})
 
 //main page
 app.get('/upload', async (req, res)=>{
@@ -57,9 +48,6 @@ app.get('/uploadError', async (req, res)=>{
     }
 })
 
-app.get('/login', (req, res) => {
-    res.render('login', {title: "Se connecter"});
-})
 
 app.get('/signup', (req, res) => {
     res.render('signup', {title: "Creer son compte"});
