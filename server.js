@@ -19,8 +19,7 @@ app.set("views", path.join(__dirname, 'views'));
 
 //Appels des routeurs 
 var indexRouter = require('./routes/index')(app);
-var usersRouter = require('./routes/users');
-var formRouter = require('./routes/form');
+//var usersRouter = require('./routes/users');
 const { publicDecrypt } = require('crypto');
 
 app.use('/users', require('./public/javascripts/viewAccount'));
@@ -82,11 +81,6 @@ app.post('/searchResource', (req, res) => {
             res.status(500).json({message: error.message})
         }
     });
-})
-
-//second page
-app.get('/blog', (req, res)=>{
-    res.render("index", {title: "Prout"});
 })
 
 //get all image object in base
