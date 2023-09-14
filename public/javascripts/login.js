@@ -3,10 +3,6 @@ const express = require('express');
 const router = express.Router();
 const bcrypt = require('bcrypt');
 
-router.get('/', (req, res) => {
-    res.render('login', {title: "Se connecter"});
-})
-
 router.post('/authenticate', async (req, res) => {
     const user = await User.findOne( { name: req.body.username } );
 

@@ -19,11 +19,12 @@ app.set("views", path.join(__dirname, 'views'));
 
 //Appels des routeurs 
 var indexRouter = require('./routes/index')(app);
-//var usersRouter = require('./routes/users');
+var usersRouter = require('./routes/users');
+var imageRouter = require('./routes/image');
 const { publicDecrypt } = require('crypto');
 
-app.use('/users', require('./public/javascripts/viewAccount'));
-app.use('/login', require('./public/javascripts/login'));
+app.use('/users', require('./routes/users'));
+//app.use('/login', require('./public/javascripts/login'));
 
 //main page
 
@@ -45,11 +46,6 @@ app.get('/uploadError', async (req, res)=>{
     } else {
         res.render("login", {title: "Ajout d'image" , alert: "Vous devez etre coonecté pour publier une image"});
     }
-})
-
-
-app.get('/signup', (req, res) => {
-    res.render('signup', {title: "Creer son compte"});
 })
 
 app.get('/searchKeyWord', (req, res) => {
@@ -122,20 +118,6 @@ app.get('/voir/:id', async(req, res)=>{
     } catch(error){
         res.status(500).json({message: error.message})
     }
-})
-
-app.post('/disconnect', (req, res)=>{
-    const connected = req.cookies['user'];
-    if(connected) {
-        res.clearCookie("user");
-        res.status(200).redirect("/")
-    } else {
-        res.status(200).redirect("/")
-    }
-})
-
-app.get('/changePassword', (req, res)=>{
-    res.render('changePassword', {title: "Changement de mot de passe"});
 })
 
 //add an image to base
